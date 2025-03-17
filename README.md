@@ -1,4 +1,4 @@
-PDF Text Extraction Tool
+#PDF Text Extraction Tool
 A robust, multi-engine tool for extracting and analyzing text from PDF documents. This tool supports various extraction methods to handle different types of PDFs including scanned documents.
 
 Features
