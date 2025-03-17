@@ -59,24 +59,5 @@
 - ocr: Best for scanned documents or PDFs with embedded images 
 - auto: Automatically selects appropriate extractor (default)
 
-### Processing Test Files Process the sample test files with all available extractors: 
 
-python process_test_files.py
 
-This will process both test3.pdf and test6.pdf using each available extractor and save the results in the output directory.
-
-Batch Processing Process all PDFs in a directory: python main.py path/to/pdf/directory --output output_directory
-
-Output Structure When using the --output option, the following files/directories are created:
-
-{filename}.txt - Complete extracted text from the document {filename}_pages/ - Directory containing page-by-page text files: page_1.txt, page_2.txt, etc. - Text extracted from individual pages When using process_test_files.py, additional analysis results are saved in:
-
-{filename}_{extractor}/ - Directory for each extractor method results Contains full text, page files, and analysis results
-
-Project Structure: text-extraction/ │ ├── main.py # Main entry point ├── process_test_files.py # Script to process test PDFs ├── processor_factory.py # Factory for creating text processors ├── processor_pipeline.py # Pipeline for document processing ├── requirements.txt # Python dependencies ├── output/ # Output directory │ ├── src/ # Source code │ ├── extractors/ # PDF extraction engines │ │ ├── base_extractor.py # Abstract base class │ │ ├── pypdf_extractor.py # PyPDF2 implementation │ │ ├── pdfplumber_extractor.py # PDFPlumber implementation │ │ └── ocr_extractor.py # OCR-based extraction │ │ │ ├── processors/ # Text processing modules │ │ ├── base_processor.py # Abstract base class │ │ ├── text_processor.py # Text cleaning │ │ ├── content_analyzer.py # Content analysis │ │ └── entity_extractor.py # Entity extraction │ │ │ ├── models/ # Data models │ │ └── document.py # Document data model │ │ │ └── utils/ # Utility functions │ └── tests/ # Unit tests
-
-Troubleshooting Missing Dependencies If you get ModuleNotFoundError for any package, install it using pip:
-
-pip install [package_name]
-
-OCR Issues Ensure Tesseract is installed and in your PATH For Windows users, you may need to explicitly set the Tesseract path in src/extractors/ocr_extractor.py: convert_from_path(pdf_path, dpi=300, poppler_path=r'C:\path\to\poppler\bin')
